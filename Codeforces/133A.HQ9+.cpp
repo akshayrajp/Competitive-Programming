@@ -1,15 +1,17 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {
-    string ip; cin>>ip;
-    for(int i=0;i<ip.length();i++)
+    string ip;
+    cin >> ip;
+    for (int i = 0; i < ip.length(); i++)
     {
-        if(ip[i]=='H'||ip[i]=='Q'||ip[i]=='9')
+        if (ip[i] == 'H' || ip[i] == 'Q' || ip[i] == '9')
         {
-            cout<<"YES"; return 0;
+            cout << "YES";
+            return 0;
         }
     }
-    cout<<"NO";
+    cout << "NO";
     return 0;
 }

@@ -1,15 +1,18 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {
-    int n,x=0; cin>>n;
+    int n, x = 0;
+    cin >> n;
     string ip;
-    while(n--)
+    while (n--)
     {
-        cin>>ip;
-        if(ip.at(0)=='+'||ip.at(2)=='+') x++;
-        else x--;
+        cin >> ip;
+        if (ip.at(0) == '+' || ip.at(2) == '+')
+            x++;
+        else
+            x--;
     }
-    cout<<x;
+    cout << x;
     return 0;
 }
