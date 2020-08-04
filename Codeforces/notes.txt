@@ -1,0 +1,4 @@
+1. Once you have a%b==0, then you can add as many '0's as you want to a, it will still remain
+divisible by b.
+
+2. Arrays are always passed by reference.
