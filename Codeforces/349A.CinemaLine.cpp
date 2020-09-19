@@ -2,32 +2,25 @@
 using namespace std;
 int main()
 {
-    int n, i, t, sum = 0;
+    int n, i, sum = 0, temp;
     cin >> n;
     for (i = 0; i < n; i++)
     {
-        cin >> t;
-        if (i == 0)
+        cin >> temp;
+        if (sum == 0)
         {
-            if (t != 25)
+            if (temp != 25)
             {
                 cout << "NO";
                 return 0;
             }
-            else
-                sum += t;
+            sum += 25;
         }
-        else if (i != 0)
+        else
         {
-            if (sum - t >= 0)
-                sum += 25;
-            else
+            if (sum <= temp)
             {
-                cout << "NO";
-                return 0;
+                sum
             }
         }
     }
-    cout << "YES";
-    return 0;
-}
