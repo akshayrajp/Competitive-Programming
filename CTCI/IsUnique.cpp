@@ -18,6 +18,9 @@ int main()
     bool isExist[256] = {false};
     for (i = 0; i < ip.length(); i++)
     {
+        // Ignore spaces
+        if (ip[i] == ' ')
+            continue;
 
         if (isExist[ip[i]])
         {
