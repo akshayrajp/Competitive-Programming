@@ -15,7 +15,7 @@ int main()
 
     while (getline(cin, buffer))
     {
-        if (buffer.find(".......", 0) != string::npos)
+        if (buffer.find("end", 0) != string::npos)
             break;
         T += buffer + ' ';
     }
