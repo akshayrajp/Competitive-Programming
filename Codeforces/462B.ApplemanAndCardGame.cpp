@@ -1,43 +1,79 @@
 #include <iostream>
-#include <algorithm>
-#include <utility>
+#include <map>
 #include <string>
+#include <vector>
+#include <utility>
+#include <algorithm>
+
 using namespace std;
-bool sortinrev(const pair<char, int> &a,
-               const pair<char, int> &b)
+
+bool cmp(pair<char, long long int>& a, pair<char, long long int>& b)
 {
-    return (a.first > b.first);
+    return a.second > b.second;
 }
+
+// Function to sort the map according
+// to value in a (key-value) pairs
+vector<long long int> sortByValue(map<char, long long int>& M)
+{
+
+    // Declare vector of pairs
+    vector<pair<char, long long int> > A;
+
+    // Copy key-value pair from Map
+    // to vector of pairs
+    for (auto& it : M)
+    {
+        A.push_back(it);
+    }
+
+    // Sort using comparator function
+    sort(A.begin(), A.end(), cmp);
+
+    // Create a new vector with the values
+    vector<long long int> res;
+
+    for (auto& it : A)
+    {
+        res.push_back(it.second);
+    }
+
+    return res;
+}
+
 int main()
 {
-    int n, k, i, res = 0;
-    pair<int, char>
-        freq[26];
-    for (i = 0; i < 26; i++)
-        freq[i].first = 0;
-    string ip;
+    long long int n, k, i;
+    long long int op = 0;
     cin >> n >> k;
-    cin.ignore(32767, '\n');
-    cin >> ip;
-    sort(ip.begin(), ip.end());
-    for (i = 0; i < ip.length(); i++)
+
+    char ch;
+
+    map<char, long long int> char_freq;
+
+    for (i = 0; i < n; i++)
     {
-        freq[char(ip[i]) - 65].second = ip[i];
-        freq[char(ip[i]) - 65].first++;
+        cin >> ch;
+        char_freq[ch]++;
     }
-    sort(freq, freq + 26, sortinrev);
-    i = 0;
-    while (k > 0)
+
+    vector<long long int> res = sortByValue(char_freq);
+
+    for (i = 0; i < res.size(); i++)
     {
-        if (freq[i].first <= k)
-            res += freq[i].first * freq[i].first, k -= freq[i].first;
+        if (k <= 0)
+            break;
+        if (res[i] >= k)
+        {
+            op += k * k;
+            k = 0;
+        }
         else
         {
-            res += k * k;
-            break;
+            op += res[i] * res[i];
+            k -= res[i];
         }
-        i++;
     }
-    cout << res;
+    cout << op;
     return 0;
 }
