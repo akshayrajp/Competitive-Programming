@@ -1,9 +1,24 @@
-
-for(i = 0; i < n; i++)
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+bool isPowerOfThree(int n)
 {
-	if(n % i == 0)
-		count++;
+    double x = (log(n) / log(3));
+    double y = (long long int)x;
+    printf("X = %lf, Y = %lf\n",x,y);
+    if (x - y == 0.00)
+        return true;
+    else
+        return false;
 }
-if(count == 2)
-	printf("Prime");
+int main()
+{
+    long long int n;
+    scanf("%lld", &n);
+    if (isPowerOfThree(n))
+        printf("Yes\n");
+    else
+        printf("No\n");
+    return 0;
+}
 

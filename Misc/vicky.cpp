@@ -1,53 +1,30 @@
 #include <iostream>
-#include <string>
+#include <algorithm>
 using namespace std;
-string sxor(string a, string b)
+int closestPair(int input1, int input2[])
 {
-	string res = "";
-	for(int i = 0; i < 8; i++)
+	int i, j, t, result = 20000000;
+	// Sort the array
+	for(i = 0; i < input1 - 1; i++)
 	{
-		if(a[i] == b[i])
-			res += '0';
-		else
-			res += '1';
+		for(j = i + 1; j < input1; j++)
+		{
+			t = input2[i] - input2[j];
+			if(t < 0)
+				t *= -1;
+			if(t < result)
+				result = t;
+		}
 	}
-	return res;
-}
-int binaryToDecimal(string n)
-{
-    string num = n;
-    int dec_value = 0;
-
-    // Initializing base value to 1, i.e 2^0
-    int base = 1;
-
-    int len = num.length();
-    for (int i = len - 1; i >= 0; i--) {
-        if (num[i] == '1')
-            dec_value += base;
-        base = base * 2;
-    }
-
-    return dec_value;
+	return result;
 }
 int main()
 {
-	string ip;
-	string first, second, message, msg;
-	int i;
-	cin >> ip;
-	first = ip.substr(0, 8);
-	second = ip.substr(8, 8);
-	message = ip.substr(16);
-	if(message.size()/8 != binaryToDecimal(second))
-		cout << "Invalid packet";
-	else
-	{
-		for(i = 0; i < message.size(); i+=8)
-		{
-			msg = message.substr(i, 8);
-			cout << (char)binaryToDecimal(sxor(first,msg));
-		}
-	}
+	int input1;
+	cin >> input1;
+	int input2[input1];
+	for(int i = 0; i < input1; i++)
+		cin >> input2[i];
+	cout << closestPair(input1, input2);
 	return 0;
 }
